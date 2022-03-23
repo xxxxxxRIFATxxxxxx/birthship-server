@@ -1,0 +1,19 @@
+{
+  "name": "birthship-server",
+  "version": "1.0.0",
+  "description": "Birthship Server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xxxxxxRIFATxxxxxx/birthship-server.git"
+  },
+  "author": "Md. Rifat Islam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xxxxxxRIFATxxxxxx/birthship-server/issues"
+  },
+  "homepage": "https://github.com/xxxxxxRIFATxxxxxx/birthship-server#readme"
+}
