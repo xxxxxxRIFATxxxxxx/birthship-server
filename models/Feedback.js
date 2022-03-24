@@ -3,16 +3,20 @@ const mongoose = require('mongoose');
 
 // Schema
 const feedbackSchema = new mongoose.Schema({
+    user: {
+        type: String,
+        maxlength: 255,
+        trim: true
+    },
+
     rating: {
         type: Number,
-        required: true,
         default: 0,
         trim: true
     },
     message: {
         type: String,
         maxlength: 255,
-        required: true,
         trim: true
     },
     attachments: [String]

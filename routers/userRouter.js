@@ -1,15 +1,14 @@
 // Dependencies
 const express = require('express');
-const Feedback = require('../models/Feedback');
+const User = require('../models/User');
 
 // Initialize
-const feedbackRouter = express.Router();
+const userRouter = express.Router();
 
-// Get All Feedback
-feedbackRouter.get('/', async (req, res) => {
-    // Submit To Database
+// Get All User
+userRouter.get('/', async (req, res) => {
     try {
-        const data = await Feedback.find({});
+        const data = await User.find({});
         res.status(200);
         res.send({
             result: data,
@@ -25,13 +24,13 @@ feedbackRouter.get('/', async (req, res) => {
     };
 });
 
-// Create Feedback
-feedbackRouter.post('/', async (req, res) => {
-    const newFeedback = new Feedback(req.body);
+// Create User
+userRouter.post('/', async (req, res) => {
+    const newUser = new User(req.body);
 
     // Submit To Database
     try {
-        const data = await newFeedback.save();
+        const data = await newUser.save();
         res.status(200);
         res.send({
             result: data,
@@ -47,13 +46,13 @@ feedbackRouter.post('/', async (req, res) => {
     };
 });
 
-// Update Feedback
-feedbackRouter.put('/:id', async (req, res) => {
+// Update User
+userRouter.put('/:id', async (req, res) => {
     const id = req.params.id;
 
     // Submit To Database
     try {
-        const data = await Feedback.findByIdAndUpdate(id, req.body);
+        const data = await User.findByIdAndUpdate(id, req.body);
         res.status(200);
         res.send({
             result: data,
@@ -69,13 +68,13 @@ feedbackRouter.put('/:id', async (req, res) => {
     };
 });
 
-// Delete Feedback
-feedbackRouter.delete('/:id', async (req, res) => {
+// Delete User
+userRouter.delete('/:id', async (req, res) => {
     const id = req.params.id;
 
     // Submit To Database
     try {
-        const data = await Feedback.findByIdAndRemove(id);
+        const data = await User.findByIdAndRemove(id);
         res.status(200);
         res.send({
             result: data,
@@ -91,13 +90,13 @@ feedbackRouter.delete('/:id', async (req, res) => {
     };
 });
 
-// Single Feedback
-feedbackRouter.get('/:id', async (req, res) => {
+// Single User
+userRouter.get('/:id', async (req, res) => {
     const id = req.params.id;
 
     // Submit To Database
     try {
-        const data = await Feedback.findById(id).exec();
+        const data = await User.findById(id).exec();
         res.status(200);
         res.send({
             result: data,
@@ -114,4 +113,4 @@ feedbackRouter.get('/:id', async (req, res) => {
 });
 
 // Export
-module.exports = feedbackRouter;
+module.exports = userRouter;

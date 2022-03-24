@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const feedbackRouter = require('./routers/feedbackRouter');
+const userRouter = require('./routers/userRouter');
 const notFoundHandler = require('./middlewares/notFoundHandler');
 const defaultErrorHandler = require('./middlewares/defaultErrorHandler');
 
@@ -22,6 +23,7 @@ app.use(express.json({ limit: '50mb' }));
 
 // Routing Setup
 app.use('/feedback', feedbackRouter);
+app.use('/user', userRouter);
 
 // Default Route
 app.get('/', (req, res) => {
