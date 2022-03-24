@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form enctype="multipart/form-data" id="feedback-form" method="post">
+        <input type="number" name="rating" id="rating">
+        <input type="text" name="message" id="message">
+        <input type="file" name="attachments" id="attachments" multiple>
+        <input type="submit" value="submit" name="submit">
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        const feedbackForm = document.getElementById("feedback-form");
+        feedbackForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            const rating = document.getElementById("rating").value;
+            const message = document.getElementById("message").value;
+            const attachments = document.getElementById("attachments").files;
+
+            formData.append("rating", rating);
+            formData.append("message", message);
+
+            //for (let i = 0; i < attachments.length; i++) {
+              //  formData.append(`attachments`, attachments[i]);
+            //};
+
+            Array.from(attachments).forEach(file => {
+                formData.append("attachments", file);
+            });
+
+            const xhr = new XMLHttpRequest();
+            xhr.onload = () => {
+                console.log(xhr.response);
+                return false;
+            };
+            xhr.open('POST', "http://localhost:5000/feedback/");
+            xhr.send(formData);
+            return false;
+        });
+    </script>
+
+    <script>
+        $(document).on('submit', '#feedback-form', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const rating = document.getElementById("rating").value;
+            const message = document.getElementById("message").value;
+            const attachments = document.getElementById("attachments").files;
+            formData.append("rating", rating);
+            formData.append("message", message);
+            Array.from(attachments).forEach(file => {
+                formData.append("attachments", file);
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "http://localhost:5000/feedback/",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('button[type="submit"]').attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    $('button[type="submit"]').removeAttr('disabled');
+                    $('#alertBox').html(data).fadeIn();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

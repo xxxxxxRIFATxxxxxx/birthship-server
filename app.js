@@ -3,8 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const fileUpload = require('express-fileupload');
-const userRouter = require('./routers/usersRouter');
+const feedbackRouter = require('./routers/feedbackRouter');
 const notFoundHandler = require('./middlewares/notFoundHandler');
 const defaultErrorHandler = require('./middlewares/defaultErrorHandler');
 
@@ -20,10 +19,10 @@ mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING)
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(fileUpload());
+app.use(express.static('public'));
 
 // Routing Setup
-app.use('/users', userRouter);
+app.use('/feedback', feedbackRouter);
 
 // Default Route
 app.get('/', (req, res) => {
@@ -31,6 +30,7 @@ app.get('/', (req, res) => {
         message: `Welcome to ${process.env.APP_NAME}`
     });
 });
+
 
 // Error Handler
 app.use(notFoundHandler);
