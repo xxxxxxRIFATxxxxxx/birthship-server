@@ -90,13 +90,13 @@ userRouter.delete('/:id', async (req, res) => {
     };
 });
 
-// Single User
-userRouter.get('/:id', async (req, res) => {
-    const id = req.params.id;
+// Single User By Email
+userRouter.get('/:email', async (req, res) => {
+    const email = req.params.email;
 
     // Submit To Database
     try {
-        const data = await User.findById(id).exec();
+        const data = await User.findOne({ email: email }).exec();
         res.status(200);
         res.send({
             result: data,
@@ -111,6 +111,7 @@ userRouter.get('/:id', async (req, res) => {
         });
     };
 });
+
 
 // Export
 module.exports = userRouter;

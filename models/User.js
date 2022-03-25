@@ -15,6 +15,16 @@ const userSchema = new mongoose.Schema({
         trim: true
     },
 
+    username: {
+        type: String,
+        maxlength: 255,
+        trim: true
+    },
+
+    image: {
+        type: String,
+    },
+
     mothersName: {
         type: String,
         maxlength: 255,
