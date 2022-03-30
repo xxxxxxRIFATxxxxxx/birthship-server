@@ -41,7 +41,7 @@ const emailSchema = new mongoose.Schema({
     }
 );
 
-const Email = mongoose.model('Feedback', emailSchema);
+const Email = mongoose.model('Email', emailSchema);
 
 // Export
 module.exports = Email;
