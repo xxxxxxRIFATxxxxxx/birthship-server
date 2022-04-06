@@ -15,7 +15,31 @@ const emailSchema = new mongoose.Schema({
         trim: true
     },
 
+    title: {
+        type: String,
+        maxlength: 255,
+        trim: true
+    },
+
+    header: {
+        type: String,
+        maxlength: 255,
+        trim: true
+    },
+
+    footer: {
+        type: String,
+        maxlength: 255,
+        trim: true
+    },
+
     templateName: {
+        type: String,
+        maxlength: 255,
+        trim: true
+    },
+
+    selectBy: {
         type: String,
         maxlength: 255,
         trim: true
