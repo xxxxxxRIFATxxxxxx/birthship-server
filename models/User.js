@@ -25,13 +25,7 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
 
-    mothersName: {
-        type: String,
-        maxlength: 255,
-        trim: true
-    },
-
-    fathersName: {
+    phoneNumber: {
         type: String,
         maxlength: 255,
         trim: true
